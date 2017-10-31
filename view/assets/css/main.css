@@ -1,0 +1,10 @@
+@import url("bootstrap/bootstrap.min.css");
+
+@import url("layout/default.css");
+
+@import url("components/header.css");
+@import url("components/nav.css");
+@import url("components/footer.css");
+
+@import url("layout/home.css");
+
