@@ -52,7 +52,7 @@ Y mettre ce code par défaut:
 ```
 Où X1 est le titre de la page (apparait dans l'onglet), et X2 est le contenu (le HTML, hors navigation, header, footer). 
 
-Pour linkez cette page, utilisez son nom. Exemple: `"http://localhost/?p=asperge"`
+Pour linker cette page, utilisez son nom. Exemple: `"http://localhost/?p=asperge"`
 
 ### Utiliser la database
 Utilisez `model/Database.php` pour générer vos requêtes sql à la BDD. 
