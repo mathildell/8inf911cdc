@@ -63,7 +63,3 @@ Récuppérez les dans un controller.
 
 Il gère l'affichage des pages, init les classes du controller, s'occupe de l'autoloader.
 
-### Preview
-![alt text](http://oi64.tinypic.com/2ziuele.jpg "Preview")
-
-
