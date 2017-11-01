@@ -1,6 +1,6 @@
 # mvc_base_8INF911
 
-## Installer le projet
+### Installer le projet
 Sur MAMP/WAMP/XAMP ou autre serveur Apache virtuel:
 
 ```git clone https://github.com/mathildell/mvc_base_8INF911.git```
@@ -64,7 +64,6 @@ Récuppérez les dans un controller.
 Il gère l'affichage des pages, init les classes du controller, s'occupe de l'autoloader.
 
 ### Preview
-
-[preview]: http://oi64.tinypic.com/2ziuele.jpg "Preview"
+![alt text](http://oi64.tinypic.com/2ziuele.jpg "Preview")
 
 
