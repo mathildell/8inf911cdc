@@ -7,7 +7,6 @@
 
   //Autoloader
   require_once 'model/Autoloader.php'; 
-
   //Si besoin, pour les fichiers à chemin absolus
   $root =  "//" . $_SERVER['SERVER_NAME']; 
   

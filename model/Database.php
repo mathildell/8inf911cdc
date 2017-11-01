@@ -18,7 +18,7 @@ class Database{
 
   public function getAll($table){
     $this->sql = $this->db->prepare("SELECT * FROM ".$table);
-    $this->sql->execute($query);
+    $this->sql->execute();
     return $this->sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
