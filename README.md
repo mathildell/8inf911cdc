@@ -10,6 +10,8 @@ Dans phpMyAdmin, importer le fichier dump.sql.
 Dans `config/`, éditez DatabaseConfig.php avec vos identifiants de database.
 GeneralConfig.php regroupe les informations générales de votre site (auteur, description...)
 
+Vous pouvez utiliser var_dump(); autour de vos données pour débugger ce qu'elles contiennent. Si le site plante, vous pouvez utiliser die(); pour intérompre l'exécution du programme à la volée et voir à partir de quelle ligne le problème émmerge. 
+
 ### Utiliser Boostrap (inclut) 
  * Pour la documentation: [Bootstrap](http://getbootstrap.com/docs/4.0/getting-started/introduction/)
  * Pour des templates déjà-fait: [StartBootstrap](https://startbootstrap.com)
@@ -59,6 +61,10 @@ Récuppérez les dans un controller.
 
 ### Le `index.php` principal
 
-Il gère l'affichage des pages, init les classes, s'occupe de l'autoloader.
+Il gère l'affichage des pages, init les classes du controller, s'occupe de l'autoloader.
+
+### Preview
+
+[preview]: http://oi64.tinypic.com/2ziuele.jpg "Preview"
 
 

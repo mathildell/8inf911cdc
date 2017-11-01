@@ -1,47 +1,28 @@
 <?php 
+  //debug mode, à supprimer en prod
+  error_reporting( E_ALL ); 
+  
+  //Les sessions sont les cookies en PHP, c'est ce qui gère l'activité des users
+  session_start();
 
-  error_reporting( E_ALL ); //debug mode
+  //Autoloader
+  require_once 'model/Autoloader.php'; 
 
-  session_start(); 
-  require_once 'model/Autoloader.php';
+  //Si besoin, pour les fichiers à chemin absolus
+  $root =  "//" . $_SERVER['SERVER_NAME']; 
+  
+  //Librairie externe pour un système de templating sans Twig (Symfony) ou Blade (Laravel)
+  //http://arshaw.com/phpti/
+  require_once 'lib/ti.php';
 
-  $root =  "http://" . $_SERVER['SERVER_NAME'];
-
-  require_once 'lib/ti.php'; //http://arshaw.com/phpti/
-
+  //Fichier de config du site
   require_once $_SERVER['DOCUMENT_ROOT'] . '/config/GeneralConfig.php';
 
+  //Initiation des controllers
   $sampleController = new SampleController();
 
-  if(isset($_GET['p'])){
+  //Gestion de la validation de formulaire
+  require_once 'logic/validateForms.php';
 
-    $page = htmlspecialchars( trim( $_GET['p'] ) ); //eg. http://localhost/?p=home
-
-    if( !empty($page) ){
-
-      $pageFilePath = 'view/layout/' . $page . '/index.php';
-
-      if(file_exists( $pageFilePath )){
-
-        include $pageFilePath;
-
-      }else{
-
-        $page = '404';
-        include 'view/layout/404/index.php';
-
-      }
-
-    }else{
-
-      $page = 'home';
-      include 'view/layout/home/index.php';
-
-    }
-
-  }else{
-
-  $page = 'home';
-  include 'view/layout/home/index.php';
-
-}
+  // Gestion de l'affichage des pages
+  require_once 'logic/displayPages.php';
