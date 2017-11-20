@@ -1,0 +1,35 @@
+// VENDOR
+@import './vendor/bootstrap/stylesheets/_bootstrap';
+@import './vendor/_jquery-ui.min';
+@import './vendor/owlcarousel/_owl.carousel';
+
+// MODULE
+@import './module/_var';
+@import './module/_mixin';
+
+// PARTIAL
+@import './partial/_fontastic';
+@import './partial/_common';
+@import './partial/_titles';
+@import './partial/_work';
+@import './partial/_buttons';
+@import './partial/_inputs';
+@import './partial/_alert';
+@import './partial/_switch';
+@import './partial/_datatable';
+@import './partial/_jqueryui';
+@import './partial/_banner';
+
+// DISPLAY
+@import './layout/_header';
+@import './layout/_nav';
+@import './layout/_footer';
+@import './layout/_home';
+@import './layout/_login';
+@import './layout/_discover';
+@import './layout/_search';
+@import './layout/_salons';
+@import './layout/_dashboard';
+@import './layout/_profile';
+@import './layout/_book';
+

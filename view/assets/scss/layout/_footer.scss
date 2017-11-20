@@ -1,0 +1,42 @@
+footer{
+  margin: 50px $viewport-padding 40px;
+  padding-top: 50px;
+  border-top: 1px solid $green;
+  h6{
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .identity {
+    p{
+      font-size: 12px;
+      line-height: 2;
+    }
+    img{
+      display: block;
+      width: 100px;
+      margin-bottom: 10px;
+    }
+  }
+  .socialMedia li{
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 15px;
+  }
+  #infoLinks{
+    padding-top: 20px;
+    margin-top: 50px;
+    border-top: 1px solid $green;
+    font-size: 12px;
+    ul{
+      list-style: none;
+      li{
+        display: inline-block;
+        margin-right: 15px;
+        margin-left: 0px;
+      }
+    }
+    .col-sm-2{
+      text-align: right;
+    }
+  }
+}

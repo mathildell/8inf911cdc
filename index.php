@@ -7,7 +7,7 @@
 
   //Autoloader
   require_once 'model/Autoloader.php'; 
-  //Si besoin, pour les fichiers à chemin absolus
+  //Si besoin, pour les fichiers à chemins absolus
   $root =  "//" . $_SERVER['SERVER_NAME']; 
   
   //Librairie externe pour un système de templating sans Twig (Symfony) ou Blade (Laravel)

@@ -5,7 +5,16 @@ if(isset($_GET['p'])){
 
   if( !empty($page) ){
 
-    $pageFilePath = 'view/layout/' . $page . '/index.php';
+    //step 1: if admin, change directory
+    if(isset($_GET["admin"])){
+      
+      $pageFilePath = 'view/layout/admin/' . $page . '/index.php';
+
+    }else{
+
+      $pageFilePath = 'view/layout/' . $page . '/index.php';
+
+    }
 
     if(file_exists( $pageFilePath )){
 
@@ -17,6 +26,8 @@ if(isset($_GET['p'])){
       include 'view/layout/404/index.php';
 
     }
+
+
 
   }else{
 

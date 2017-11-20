@@ -1,0 +1,94 @@
+#book{
+  margin:($viewport-padding * 2) $viewport-padding 100px;
+  .banner.inner{
+    margin-top: 100px;
+  }
+
+  .work#emphased{
+    .description{
+      p{
+        max-height: none !important;
+        &:after{
+          display: none;
+        }
+        &:not(:last-child){
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  aside{
+    .sideCat{
+      h5{
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .work{
+        margin-top: 10px;
+        .description{
+          h2{
+            font-size: 17px;
+          }
+          h3{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  #comments{
+    & > h4{
+      font-weight: normal;
+      font-style: italic;
+      font-size: 30px;
+    }
+    & > h5{
+      font-size: 18px;
+      color: $dark-green;
+      margin-bottom: 50px;
+    }
+    aside{
+      .sideCat{
+        h5{
+          font-size: 18px;
+        }
+        margin-bottom: 30px;
+      }
+    }
+    
+    .userReview{
+      &:not(:first-of-type){
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid $green;
+      }
+      h6{
+        font-size: 35px;
+        margin-bottom: 15px;
+      }
+      .user{
+        clear: both;
+        margin-bottom: 20px;
+        img{
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 3px;
+          display: inline-block;
+          margin-right: 20px;
+        }
+        a{
+        }
+        datetime{
+          display: block;
+          float: right;
+          text-transform:uppercase;
+          color: $brown;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+}

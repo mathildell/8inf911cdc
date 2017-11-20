@@ -8,7 +8,7 @@
       case 0:
 
          //On envoit les données passées par le form au controller qui l'enverra à la BDD
-         //Une opération en BDD retourne un boulean 
+         //Une opération en BDD retourne un boolean 
          $action = $sampleController->form0Validated($_POST);
 
          //Si elle a eu lieu, c'est un succès:

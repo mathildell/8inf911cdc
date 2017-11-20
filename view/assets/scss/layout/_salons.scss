@@ -1,0 +1,57 @@
+#salons{
+  margin:($viewport-padding * 2) $viewport-padding 100px;
+  aside{
+    .sideCat{
+      margin-bottom: 30px;
+      h5{
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      h6{
+        font-size: 35px;
+        color: $dark-green;
+        line-height: 1;
+        span{
+          color: $brown;
+          display: block;
+        }
+      }
+      ul{
+        li{
+          margin-bottom: 10px;
+          .user{
+            img{
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              border-radius: 2px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  #allWorks,
+  #emphasisWork{
+    h1, & > h2{
+      font-weight: normal;
+      font-style: italic;
+      font-size: 50px;
+      margin-bottom: 50px;
+    }
+  }
+  #emphasisWork{
+    margin-bottom: 50px;
+  }
+  #allWorks > h2{
+    font-size: 35px;
+    margin-bottom: 0px;
+  }
+
+  & + .banner{
+    .content{
+      font-size: 15px;
+    }
+  }
+}
