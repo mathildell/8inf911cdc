@@ -1,6 +1,9 @@
 # Projet CDC
 ```sh 
 git clone
+```
+Development scss:
+```sh 
 sass --watch view/assets/scss:view/assets/css --style compressed
 ```
 
