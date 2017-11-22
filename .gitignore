@@ -1,3 +1,4 @@
 config/DatabaseConfig.php
 .sass-cache/
 view/assets/scss/
+*.map
