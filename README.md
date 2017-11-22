@@ -1,6 +1,8 @@
 # Projet CDC
-
-``` sass --watch view/assets/scss:view/assets/css --style compressed ```
+```sh 
+git clone
+sass --watch view/assets/scss:view/assets/css --style compressed
+```
 
 Templates faits:
   - Home (/)
@@ -13,7 +15,6 @@ Templates faits:
   - Admin dashboard (/admin)
 
 TODO:
-  - FIX RESPONSIVE
   - Formulaires (validation & BDD)
   - Admin / BDD
   - Pages books: liens amazon

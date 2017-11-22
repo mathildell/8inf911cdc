@@ -9,7 +9,7 @@
           bonjour@clubcritique.tk
         </p>
       </div>
-      <div class="col-md-4 socialMedia">
+      <div class="col-md-4 smedia">
         <h6>Follow us</h6>
         <ul>
            <li><!-- facebook --><a href="http://facebook.com/" target="_blank" class="icon-facebook-alt"></a></li>

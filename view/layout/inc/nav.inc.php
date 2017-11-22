@@ -1,4 +1,5 @@
 <nav>
+  <button class="responsive-menu btn btn-primary icon-angle-double-up"></button>
   <ul class="nav-left">
     <li>
       <a href="/home"<?= ($page == 'home') ? 'class="active"' : ''; ?>> Accueil </a>

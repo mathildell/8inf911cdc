@@ -1,5 +1,10 @@
 #book{
   margin:($viewport-padding * 2) $viewport-padding 100px;
+
+  @media screen and (max-width: 1100px) {
+    margin: 90px $viewport-pad-resp 100px;
+  }
+
   .banner.inner{
     margin-top: 100px;
   }

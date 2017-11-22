@@ -19,9 +19,7 @@
     ?>
 
     <script src="<?= $root; ?>/view/assets/js/vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-
-    <script src="<?= $root; ?>/view/assets/js/vendor/bootstrap/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?= $root; ?>/view/assets/js/vendor/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="<?= $root; ?>/view/assets/js/vendor/bootstrap/javascripts/bootstrap-select.min.js" type="text/javascript"></script>
 
     <script src="<?= $root; ?>/view/assets/js/common.js" type="text/javascript"></script>
 

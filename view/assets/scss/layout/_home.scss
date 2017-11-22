@@ -10,6 +10,9 @@
   }
   #aboutUs, #joinUs{
     margin: 0 $viewport-padding;
+    @media screen and (max-width: 1100px) {
+      margin: 0px $viewport-pad-resp;
+    }
   }
   #aboutUs{
     h1{

@@ -1,5 +1,10 @@
 footer{
   margin: 50px $viewport-padding 40px;
+
+  @media screen and (max-width: 1100px) {
+    margin: 20px $viewport-pad-resp 40px;
+  }
+
   padding-top: 50px;
   border-top: 1px solid $green;
   h6{
@@ -17,7 +22,7 @@ footer{
       margin-bottom: 10px;
     }
   }
-  .socialMedia li{
+  .smedia li{
     font-size: 20px;
     display: inline-block;
     margin-right: 15px;
@@ -36,7 +41,9 @@ footer{
       }
     }
     .col-sm-2{
-      text-align: right;
+      @media screen and (min-width: 1100px) {
+        text-align: right;
+      }
     }
   }
 }

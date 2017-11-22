@@ -5,11 +5,17 @@
     color: $brown;
     font-size: 26px;
     padding: 0 ($viewport-padding * 2) 20px;
+    @media screen and (max-width: 1100px) {
+      padding: 0px ($viewport-pad-resp * 2) 20px;
+    }
   }
   .content{
     color: $dark-green;
     background-color: $green;
     padding: 30px ($viewport-padding * 2);
+    @media screen and (max-width: 1100px) {
+      padding: 30px ($viewport-pad-resp * 2);
+    }
     h5{
       font-weight: normal;
       font-size: 13px;
@@ -33,11 +39,30 @@
     margin-top: -30px;
     margin-bottom: -30px;
     margin-left: -($viewport-padding);
+    @media screen and (max-width: 1100px) {
+      margin-left:-($viewport-pad-resp);
+    }
     padding-top: 30px;
     padding-bottom: 10px;
     padding-left: $viewport-padding;
+    @media screen and (max-width: 1100px) {
+      padding-left: $viewport-pad-resp;
+    }
     padding-right: 30px;
     background-color: #fff;
+    @media screen and (max-width: 1100px) {
+      img{
+        display: block;
+        margin: 0 auto 20px;
+      }
+      margin-right: -($viewport-padding);
+      padding-right: $viewport-padding;
+      @media screen and (max-width: 1100px) {
+        margin-right: -($viewport-pad-resp);
+        padding-right: $viewport-pad-resp;
+      }
+      padding-bottom: 40px;
+    }
     h2{
       //color: $brown;
     }
@@ -67,5 +92,8 @@
   margin: 100px 0 50px;
   &.inner{
     margin: 50px (-$viewport-padding) 100px;
+    @media screen and (max-width: 1100px) {
+      margin: 50px (-$viewport-pad-resp) 100px;
+    }
   }
 }
