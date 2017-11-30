@@ -1,6 +1,6 @@
 # Projet CDC
 
-##Installation
+## Installation
 ```sh 
 git clone https://github.com/mathildell/8inf911cdc.git
 ```

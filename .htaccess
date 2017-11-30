@@ -1,7 +1,7 @@
 php_value date.timezone 'America/Toronto'
 
 RewriteEngine On
-RewriteBase /
+RewriteBase /8inf911cdc/
 
 #standard page
 RewriteCond %{QUERY_STRING} !^p
