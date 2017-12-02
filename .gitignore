@@ -2,3 +2,4 @@ config/DatabaseConfig.php
 .sass-cache/
 view/assets/scss/
 *.map
+.DS_Store
