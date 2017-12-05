@@ -12,24 +12,60 @@ class SalonsController extends ApplicationController{
 
   public function registerUser($salonid, $userid){
     $currentusers = SELF::get($salonid)[0]["users_id"];
-    
-    if(!empty($currentusers)){
-      $register[":users_id"] = $currentusers.','.$userid;
+    $usersArray = explode(",", $currentusers);
+    if(in_array($userid, $usersArray)){
+      return true;
     }else{
-      $register[":users_id"] = $userid;
+      if(!empty($currentusers)){
+        $register[":users_id"] = $currentusers.','.$userid;
+      }else{
+        $register[":users_id"] = $userid;
+      }
+      $register[":id"] = $salonid;
+      return $this->db->patch("salons", $register);
     }
-    $register[":id"] = $salonid;
 
-    return $this->db->patch("salons", $register);
   }
 
   public function getAll(){
     $data = [];
     return $this->db->get("salons", $data);
   }
+
+  public function sendMessage($data){
+    $users_id = intval(trim($data["users_id"]));
+    $salons_id = intval(trim($data["salons_id"]));
+    $message = htmlspecialchars(trim($data["message"]));
+
+    $newMsg = [
+      ":salons_id" => $salons_id,
+      ":users_id" => $users_id,
+      ":message" => $message,
+      ":timestamp" => date('Y-m-d H:m:s') 
+    ];
+
+    return $this->db->put("messages", $newMsg);
+  }
+
+  public function getMessages($id){
+
+    $query = "SELECT 
+                messages.*,
+                users.*
+              FROM messages 
+              JOIN users
+                ON messages.users_id=users.id
+              WHERE messages.salons_id =".$id."
+              ORDER BY messages.id DESC";
+
+    return $this->db->custom($query);
+
+
+    //return $this->db->get("messages", [":id" => $salons_id]);
+  }
   public function get($id){
     $query = "SELECT 
-                salons.id, salons.books_id, salons.date, salons.users_id,
+                salons.id, salons.open, salons.books_id, salons.date, salons.users_id,
                 books.title, books.author, books.description, books.image, books.genres_id
               FROM salons 
               JOIN books
@@ -48,12 +84,15 @@ class SalonsController extends ApplicationController{
     $salonsBookId = intval(trim($data["salonsBookId"]));
     $salonsDate = htmlspecialchars(trim($data["salonsDate"]));
     $salonsTime = htmlspecialchars(trim($data["salonsTime"]));
+    $open = intval(trim($data["salonsOpen"]));
     $salonsDateTime = $salonsDate." ".$salonsTime.":00";
+    
     if(!empty($salonsBookId)){
       $newSalon[":books_id"] = $salonsBookId;
     }
     $newSalon = [
       ":date" => $salonsDateTime,
+      ":open" => $open,
       ":id" => $salonId
     ];
     return $this->db->patch("salons", $newSalon);
@@ -94,7 +133,7 @@ class SalonsController extends ApplicationController{
   }
   public function findNextSalon(){
     $query = "SELECT 
-                salons.id, salons.books_id, salons.date, salons.users_id,
+                salons.id, salons.open, salons.books_id, salons.date, salons.users_id,
                 books.title, books.author, books.description, books.image, books.genres_id
               FROM salons 
               JOIN books

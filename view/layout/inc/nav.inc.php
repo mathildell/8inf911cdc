@@ -1,7 +1,7 @@
 <?php
   $allyenres = $Books->getGenres();
   $booksOrderByNew = $Books->getNews();
-  $bestOfBest = $Books->custom("SELECT id, title, description, author, image FROM books WHERE ALaUne = '1' LIMIT 1 ")[0];
+  $bestOfBest = $Books->custom("SELECT id, title, description, author, image FROM books WHERE ALaUne = '1' ORDER BY RAND() LIMIT 1")[0];
 
 ?>
 <nav>
@@ -49,7 +49,7 @@
             <div class="row-table">
               <div class="col">
                 <h4><a href="<?= $root; ?>/book/<?= $bestOfBest["id"]; ?>"><?= $bestOfBest["title"]; ?></a> by <?= $bestOfBest["author"]; ?></h4>
-                <p>Sixteen-year-old and not-so-openly gay Simon Spier prefers to save his drama for the school musical.</p>
+                <p><?= preg_replace('/([^?!.]*.).*/', '\\1', $bestOfBest["description"]); ?></p>
                 <br> <br>
                 <a class="btn btn-primary" href="<?= $root; ?>/book/<?= $bestOfBest["id"]; ?>">voir plus</a>
               </div>

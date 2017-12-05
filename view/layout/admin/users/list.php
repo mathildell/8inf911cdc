@@ -26,7 +26,7 @@
           <td><?= $user["registered"]; ?></td>
           <td><?= (intval($user["isAdmin"]) === 1) ? "Oui" : "Non"; ?></td>
           <td class="actions">
-            <div><a href="<?= $root; ?>/admin/users/<?= $user["id"]; ?>/edit" class="btn-edit"><span class="ion-edit"></span></a></div>
+            <!-- <div><a href="<?= $root; ?>/admin/users/<?= $user["id"]; ?>/edit" class="btn-edit"><span class="ion-edit"></span></a></div> -->
             <form action="<?= $root; ?>?p=books&admin=true&action=validateForm&formID=97" method="POST"><input type="hidden" name="id" value="<?= $user["id"]; ?>"><button type="submit" class="btn-delete" name="validateForm"><span class="ion-trash-a"></span></button></form>
           </td>
       </tr>

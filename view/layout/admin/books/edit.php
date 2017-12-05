@@ -50,8 +50,7 @@
                 }
               ?>
               </ul>
-              <input type="hidden" id="genres" name="genres" value="<?= $book['genres_id'] ?>">
-              <input type="hidden" id="addedGenres" name="addedGenres">
+              <input type="hidden" id="genresIds" name="genresIds" value="<?= $book['genres_id'] ?>">
               <div class="form-group ui-widget"><br>
                 <small><label for="addGenre">Ajouter un genre</label></small>
                 <input type="text" class="form-control" id="addGenre" name="addGenre" placeholder="Genre">

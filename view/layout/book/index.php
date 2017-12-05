@@ -44,15 +44,6 @@
                     </ul>
                   </div>
                 </div>
-                <div class="morelinks">
-                  <a href="#" class="btn btn-primary" id="readExtracts" target="_blank">
-                    <i class="ion-ios-book"></i> Lire un extrait
-                  </a>
-                  <a href="#" target="_blank" class="btn btn-primary" id="buyOnGooglePlay">
-                    <i class="ion-ios-download"></i> Acheter sur Google Play 
-                    <span></span>
-                  </a> 
-                </div>
               </div>
             </div>
           </div>
@@ -124,6 +115,15 @@
 
           </div>
         </div>
+        <aside class="col-md-4 morelinks">
+          <a href="#" class="btn btn-primary" id="readExtracts" target="_blank">
+            <i class="ion-ios-book"></i> Lire un extrait
+          </a>
+          <a href="#" target="_blank" class="btn btn-primary" id="buyOnGooglePlay">
+            <i class="ion-ios-download"></i> Acheter sur Google Play 
+            <span></span>
+          </a> 
+        </aside>
       </div>
     </section>
     <?php
@@ -156,7 +156,6 @@
       }else{
         echo '<br><br><br>';
       }
-
       //if(!empty($book["comments_id"])){
         /* get comments */
         $comments = $Books->getComments($book["id"]);
@@ -209,7 +208,9 @@
           </div>
           <?php 
               }
-            } ?>
+            } 
+
+      if($logged){?>
 
           <form class="form" action="<?= $root; ?>?p=book&id=<?= $book["id"]; ?>&action=validateForm&formID=3" method="POST">
             <?php if(count($comments) > 0){ ?><br><br><hr><br><br><?php } ?>
@@ -232,13 +233,14 @@
               <button class="btn btn-primary pull-right" type="submit" name="validateForm">Poster</button>
             </div>
           </form>
+          <?php
+          }
+          ?>
         </div>
 
       </div>
 
     </section>
-    <?php
-    ?>
       
  </div>
 

@@ -38,8 +38,9 @@ class BooksController extends ApplicationController{
     $publisher = htmlspecialchars(trim($data["bookPublisher"]));
     $publishedDate = htmlspecialchars(trim($data["bookPublishedDate"]));
     $description = htmlspecialchars(trim($data["bookDescription"]));
-    $genres = htmlspecialchars(trim($data["genres"]));
+    $genres = htmlspecialchars(trim($data["genresIds"]));
     $alaune = intval(trim($data["aLaUne"]));
+
 
     $modifyBook = [
       ":title" => $title,
@@ -64,30 +65,24 @@ class BooksController extends ApplicationController{
     $publishedDate = htmlspecialchars(trim($data["bookPublishedDate"]));
     $image = htmlspecialchars(trim($data["bookImagee"]));
     $description = htmlspecialchars(trim($data["bookDescription"]));
-    $genres = explode(",", htmlspecialchars(trim($data["genres"])));
+    $genresIds = explode(",", htmlspecialchars(trim($data["genresIds"])));
+    $genresName = explode(",", htmlspecialchars(trim($data["genresNames"])));
     $alaune = intval(trim($data["aLaUne"]));
 
     $allGenres = [];
 
-    foreach ($genres as $key => $newGenre) {
-      
-
+    foreach ($genresName as $key => $newGenre) {
       if(!empty(trim($newGenre))){
         $checkIfGenreExists = SELF::getGenre($newGenre)[0]["id"];
         if(!empty($checkIfGenreExists)){
           array_push($allGenres, $checkIfGenreExists);
         }else{
-          //add to genre list
-          //var_dump($checkIfGenreExists);
           SELF::createGenre(["genreName" => $newGenre]);
           array_push($allGenres, SELF::getGenre($newGenre)[0]["id"]);
-
         }
       }
-
-
     }
-    $allGenres = implode(',', $allGenres);
+    $allGenres = implode(",", array_merge($genresIds, $allGenres));
     
     $newBook = [
       ":google_id" => $googleid,
@@ -145,7 +140,7 @@ class BooksController extends ApplicationController{
   }
   
   public function getNews(){
-    $query = "SELECT title, id, author FROM books ORDER BY created LIMIT 4";
+    $query = "SELECT title, id, author FROM books ORDER BY id DESC LIMIT 4";
     return $this->db->custom($query);
   }
 
@@ -161,7 +156,7 @@ class BooksController extends ApplicationController{
 
     $query = "SELECT * FROM reviews 
               WHERE books_id = ".$bookId."
-              ORDER BY timestamp";
+              ORDER BY timestamp DESC";
     return $this->db->custom($query);
   }
 

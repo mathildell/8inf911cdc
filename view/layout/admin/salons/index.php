@@ -46,6 +46,12 @@
 <script>
 $(function(){
 
+
+  // $( '.datepicker').datepicker({
+  //   'dateFormat': 'yyyy-mm-dd',
+  //   'showAnim': 'fadeIn'
+  // });
+
   $('#example').DataTable({
     "order": [[ 3, 'desc' ]]
   });

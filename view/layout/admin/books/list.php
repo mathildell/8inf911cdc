@@ -11,7 +11,6 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>Genres</th>
-                <th>Salon</th>
                 <th>À la une</th>
                 <th>Actions</th>
             </tr>
@@ -37,7 +36,6 @@
                     echo $htmlGr;
                   } ?>
                 </td>
-                <td style="width: 150px;"><?= $book["salons_id"]; ?></td>
                 <td style="width:100px;"><?= (intval($book["ALaUne"]) === 1) ? "Yes" : "No"; ?></td>
                 <td class="actions">
                   <div><a href="<?= $root; ?>/admin/books/<?= $book["id"]; ?>/edit" class="btn-edit"><span class="ion-edit"></span></a></div>

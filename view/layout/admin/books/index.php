@@ -51,9 +51,11 @@ $(function(){
     "order": [[ 0, 'desc' ]]
   });
   $('#tags').delegate('.deleteGenre', 'click', function(){
-    var id = $(this).data('id');
+    var id = $(this).data('id'),name = $(this).data('name');
     $(this).parent().remove();
-    $('#genres').val($('#genres').val().replace(id,'').replace(',,',','));
+
+    $('#genresIds').val($('#genresIds').val().replace(id,'').replace(',,',','));
+    $('#genresNames').val($('#genresNames').val().replace(name,'').replace(',,',','));
 
   });
   /*
@@ -116,11 +118,12 @@ $(function(){
 //genres
     var tags = $(this).data('tags').split(",");
     $.each(tags, function(i, tag){
-      $('#tags').append('<li><a href="#">'+tag+'</a> <a href="#" class="deleteGenre" data-id="'+tag+'"> <span class="ion-trash-a"></span></a></li>');
+      $('#tags').append('<li><a href="#">'+tag+'</a> <a href="#" class="deleteGenre" data-id="'+tag+'" data-name="'+tag+'"> <span class="ion-trash-a"></span></a></li>');
       if(i !== 0){
-        $('#genres').val($('#genres').val()+","+tag);
+        $('#genresNames').val($('#genresNames').val()+","+tag);
+
       }else{
-        $('#genres').val(tag);
+        $('#genresNames').val(tag);
       }
     });
 
@@ -129,7 +132,7 @@ $(function(){
   });
 
   var autocompleter = [];
-  $.getJSON('http://localhost/logic/exportGenres.php', function(data) {
+  $.getJSON('<?= $root; ?>/logic/exportGenres.php', function(data) {
     $.each(data, function(i, obj){
       autocompleter.push({ "id": obj.id, "label" : obj.name });
     });
@@ -137,13 +140,13 @@ $(function(){
         delay: 0,
         source: autocompleter,
         select: function (event, ui) {
-          if($('#genres').val().length > 0){
-            $('#genres').val($('#genres').val()+","+ui.item.id);
+          if($('#genresIds').val().length > 0){
+            $('#genresIds').val($('#genresIds').val()+","+ui.item.id);
           }else{
-            $('#genres').val(ui.item.id);
+            $('#genresIds').val(ui.item.id);
           }
           $("#addGenre").val("");
-          $('#tags').append('<li><a href="admin/genres">'+ui.item.label+'</a> <a data-id="'+ui.item.id+'" href="#" class="deleteGenre"> <span class="ion-trash-a"></span></a></li>');
+          $('#tags').append('<li><a href="admin/genres">'+ui.item.label+'</a> <a data-id="'+ui.item.id+'" data-name="'+ui.item.label+'" href="#" class="deleteGenre"> <span class="ion-trash-a"></span></a></li>');
         }
       });
   });

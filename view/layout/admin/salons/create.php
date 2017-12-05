@@ -13,7 +13,7 @@
 
         <div class="form-group">
           <label for="salonsDate">Date</label>
-          <input type="date" class="form-control" id="salonsDate" name="salonsDate" value="<?= date('Y-m-d'); ?>">
+          <input type="date" class="form-control datepicker" id="salonsDate" name="salonsDate" value="<?= date('Y-m-d'); ?>">
         </div>
         <div class="form-group">
           <label for="salonsTime">Time</label>

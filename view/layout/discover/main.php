@@ -51,11 +51,9 @@
               <ul>
                 <?php 
                 foreach ($allgenres as $key => $genre) {
-                  if($key < 11){
                 ?>
                   <li><a href="<?= $root; ?>/discover/<?= $genre["id"]; ?>"><?= $genre["name"]; ?></a></li>
                 <?php
-                  }
                 }
                 ?>
               </ul>

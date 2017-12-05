@@ -4,7 +4,7 @@
 ?>
 <div id="salons">
 <section id="emphasisWork">
-  <h1>Prochain Salon</h1>
+  <h1><?= ($nextSalon["open"] == 1) ? ' <span style="padding: 5px 15px;" class="thumb warning">ouvert</span>' : ''; ?> Prochain Salon</h1>
   <div class="row">
     <div class="col-md-8">
       <div class="work" id="emphased">
@@ -30,10 +30,16 @@
                 ?>  
                 </ul>
               </div>
-              <?php if($logged){ ?>
+              <?php if($logged && $nextSalon["open"] != 1){ ?>
               <div class="col-md-4">
                 <a class="btn btn-primary pull-right readMore" href="<?= $root; ?>/salons/<?= $nextSalon["id"]; ?>/join">
                   S'inscrire!
+                </a>
+              </div>
+              <?php }else if($logged && $nextSalon["open"] == 1){ ?>
+              <div class="col-md-4">
+                <a class="btn btn-primary pull-right readMore" href="<?= $root; ?>/salons/<?= $nextSalon["id"]; ?>">
+                  Rejoindre!
                 </a>
               </div>
               <?php } ?>

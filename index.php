@@ -36,6 +36,9 @@
     $logged = true;
     $me = $Users->get($_SESSION["id"])[0];
     $isadmin = (intval($me["isAdmin"]) === 1) ? true : false;
+    if($isadmin){
+      $Admin = new AdminController();
+    }
   }
   
 

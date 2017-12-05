@@ -50,8 +50,11 @@
             <div class="sideCat">
               <h3>Genres</h3>
               <ul id="tags"></ul>
-
-              <input type="hidden" id="genres" name="genres">
+              
+              <!-- genresIds: exist already -->
+              <input type="hidden" id="genresIds" name="genresIds">
+              <!-- genresNames: to create -->
+              <input type="hidden" id="genresNames" name="genresNames">
 
               <div class="form-group ui-widget"><br>
                 <small><label for="addGenre">Ajouter un genre</label></small>
