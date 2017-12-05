@@ -1,10 +1,6 @@
 <?php include 'view/layout/template.php'; ?>
 
-<?php startblock('pageTitle'); ?>
-
-   Salons
-
-<?php endblock(); ?>
+<?php startblock('pageTitle'); ?>Salons<?php endblock(); ?>
 
 <?php 
   startblock('pageContent'); 

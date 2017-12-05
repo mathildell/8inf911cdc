@@ -17,7 +17,7 @@
         $isRegistered = true;
       }
     }
-    if(!$isRegistered){
+    if(!$isRegistered && !$isPast){
       $isRegistered = $Salons->registerUser($getSalon["id"], $me["id"]);
       array_push($usersSalon, ["id" => $me["id"], "username" => $me["username"], "image" => $me["image"] ]);
     }

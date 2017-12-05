@@ -6,10 +6,13 @@
   
 
    <div id="discover">
-      <section id="emphasisWork">
-        <h1>À la Une</h1>
-        <div class="row">
-          <div class="col-md-8">
+    <div class="mainTitle">
+
+          <h1>À la Une</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <section id="emphasisWork">
             <div class="work" id="emphased">
               <input type="hidden" id="googleidemphased" value="<?= $booksEmphased["google_id"]; ?>">
               <div class="row">
@@ -44,8 +47,43 @@
                 </div>
               </div>
             </div>
-          </div>
-          <aside class="col-md-3 col-md-offset-1">
+
+          </section>
+        <section id="allWorks">
+          <?php
+            $allbooks = $Books->getAll();
+            foreach ($allbooks as $key => $book) {
+              if($key < 9){
+                if($key % 2 === 0){
+                  echo '<div class="row">';
+                }
+                ?>
+                <div id="<?= $book["google_id"]; ?>" class="work col-md-6">
+                  <a class="row" href="<?= $root; ?>/book/<?= $book["id"]; ?>">
+                    <div class="col-md-4">
+                      <img class="bookImg" src="<?= $book["image"]; ?>" alt="logo" />
+                    </div>
+                    <div class="col-md-8 description">
+                      <h2 class="title"><?= $book["title"]; ?></h2>
+                      <h3>by <?= $book["author"]; ?></h3>
+                    </div>
+                  </a>
+                </div>
+                <?php
+
+                if($key % 2 === 1){
+                  echo '</div>';
+                }
+              }
+            }
+          ?>
+
+        </section>
+          
+
+        </div>
+
+          <aside class="col-md-3 col-md-offset-1 pull-right">
             <div class="sideCat">
               <h5>Other genres</h5>
               <ul>
@@ -70,40 +108,5 @@
               </div>
             </div>
           </aside>
-        </div>
-      </section>
-
-      <section id="allWorks">
-        <?php
-          $allbooks = $Books->getAll();
-          foreach ($allbooks as $key => $book) {
-            if($key < 9){
-              if($key % 3 === 0){
-                echo '<div class="row">';
-              }
-              ?>
-              <div id="<?= $book["google_id"]; ?>" class="work col-md-3 <?= ($key % 3 !== 0) ? ' col-md-offset-1': ''; ?>">
-                <a class="row" href="<?= $root; ?>/book/<?= $book["id"]; ?>">
-                  <div class="col-md-4">
-                    <img class="bookImg" src="<?= $book["image"]; ?>" alt="logo" />
-                  </div>
-                  <div class="col-md-8 description">
-                    <h2 class="title"><?= $book["title"]; ?></h2>
-                    <h3>by <?= $book["author"]; ?></h3>
-                  </div>
-                </a>
-              </div>
-              <?php
-
-              if($key % 3 === 2){
-                echo '</div>';
-              }
-            }
-          }
-        ?>
-        
-
-
-      </section>
-        
+      </div>
    </div>

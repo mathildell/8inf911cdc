@@ -5,6 +5,11 @@
 git clone https://github.com/mathildell/8inf911cdc.git
 ```
 
+Start node server
+```sh 
+node view/assets/js/vendor/chat/nodeServer.js
+```
+
 When rolling onto serveur, change DB file in `model/Database.php`
 
 Development scss:

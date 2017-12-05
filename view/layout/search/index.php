@@ -1,10 +1,6 @@
 <?php include 'view/layout/template.php'; ?>
 
-<?php startblock('pageTitle'); ?>
-
-   Search results
-
-<?php endblock(); ?>
+<?php startblock('pageTitle'); ?>Recherche<?php endblock(); ?>
 
 <?php 
   startblock('pageContent'); 

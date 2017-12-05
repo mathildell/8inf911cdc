@@ -9,9 +9,41 @@
     <?php
     if($booksEmphased !== NULL){
       ?>
-      <section id="emphasisWork" style="margin-bottom: 0px;">
-        <h1>À la Une</h1>
+
+      <section id="emphasisWork">
+
+           <h1>À la Une</h1>
         <div class="row">
+        <aside class="col-md-3 col-md-offset-1 pull-right">
+            <div class="sideCat">
+              <h2><?= $genre["name"] ?></h2>
+            </div>
+            <div class="sideCat">
+              <h5>Other genres</h5>
+              <ul>
+                <?php 
+                foreach ($allgenres as $key => $genre) {
+                  if($key < 6){
+                ?>
+                  <li><a href="<?= $root; ?>/discover/<?= $genre["id"]; ?>"><?= $genre["name"]; ?></a></li>
+                <?php
+                  }
+                }
+                ?>
+              </ul>
+            </div>
+            <div class="sideCat">
+              <h5>Trier les résultats</h5>
+              <div class="form-group">
+                <select class="selectpicker">
+                  <option value="0">Nouveautées</option>
+                  <option value="1">Popularité</option>
+                  <option value="2">Auteurs: A-Z</option>
+                  <option value="3">Titres: A-Z</option>
+                </select>
+              </div>
+            </div>
+          </aside>
           <div class="col-md-8">
             <div class="work" id="emphased">
               <input type="hidden" id="googleidemphased" value="<?= $booksEmphased["google_id"]; ?>">
@@ -49,7 +81,22 @@
             </div>
           </div>
 
-          <aside class="col-md-3 col-md-offset-1">
+          
+
+
+
+        </div>
+      </section>
+
+      <?php
+      }
+      ?>
+      <section id="allWorks">
+        <?php
+          if($booksEmphased === NULL){
+          ?>
+          <div class="row">
+            <aside class="col-md-3 col-md-offset-1 pull-right">
             <div class="sideCat">
               <h2><?= $genre["name"] ?></h2>
             </div>
@@ -79,21 +126,10 @@
               </div>
             </div>
           </aside>
-
-
-
-        </div>
-      </section>
-
-      <?php
-      }
-      ?>
-      <section id="allWorks">
-        <?php
-          if($booksEmphased === NULL){
-          ?>
-          <div class="row">
             <div class="col-md-8">
+          <?php
+          ?>
+          
           <?php
           }
 
@@ -140,36 +176,6 @@
           ?>
 
           </div>
-          <aside class="col-md-3 col-md-offset-1">
-            <div class="sideCat">
-              <h2><?= $genre["name"] ?></h2>
-            </div>
-            <div class="sideCat">
-              <h5>Other genres</h5>
-              <ul>
-                <?php 
-                foreach ($allgenres as $key => $genre) {
-                  if($key < 6){
-                ?>
-                  <li><a href="<?= $root; ?>/discover/<?= $genre["id"]; ?>"><?= $genre["name"]; ?></a></li>
-                <?php
-                  }
-                }
-                ?>
-              </ul>
-            </div>
-            <div class="sideCat">
-              <h5>Trier les résultats</h5>
-              <div class="form-group">
-                <select class="selectpicker">
-                  <option value="0">Nouveautées</option>
-                  <option value="1">Popularité</option>
-                  <option value="2">Auteurs: A-Z</option>
-                  <option value="3">Titres: A-Z</option>
-                </select>
-              </div>
-            </div>
-          </aside>
         </div>
           <?php
           }

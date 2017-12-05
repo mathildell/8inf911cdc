@@ -1,10 +1,6 @@
 <?php include 'view/layout/template.php'; ?>
 
-<?php startblock('pageTitle'); ?>
-
-   Page title
-
-<?php endblock(); ?>
+<?php startblock('pageTitle'); ?>Bienvenue<?php endblock(); ?>
 
 <?php 
   startblock('pageContent'); 

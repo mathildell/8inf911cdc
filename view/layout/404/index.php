@@ -1,10 +1,6 @@
 <?php include 'view/layout/template.php'; ?>
 
-<?php startblock('pageTitle'); ?>
-
-   404 Not Found
-
-<?php endblock(); ?>
+<?php startblock('pageTitle'); ?>404 Not Found<?php endblock(); ?>
 
 <?php 
   startblock('pageContent'); 
