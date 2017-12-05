@@ -1,15 +1,5 @@
 <?php
 class SalonsController extends ApplicationController{
-  protected $db;
-
-  public function __construct(){
-    //instancie la BDD
-    if(!$this->db){
-      $this->db = new Database();
-    }
-
-  }
-
   public function registerUser($salonid, $userid){
     $currentusers = SELF::get($salonid)[0]["users_id"];
     $usersArray = explode(",", $currentusers);
