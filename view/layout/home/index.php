@@ -40,68 +40,74 @@
 
       </section>
       <section class="banner inner">
+        <?php
+          $nextSalon = $Salons->findNextSalon()[0];
+        ?>
         <h4>Prochain Salon</h4>
         <div class="content">
           <div class="row">
             <div class="work col-md-6">
-              <a class="row">
+              <a class="row" href="<?= $root; ?>/salons/<?= $nextSalon["id"]; ?>">
                 <div class="col-md-3">
-                  <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
+                  <img src="<?= $nextSalon["image"]; ?>" alt="logo" />
                 </div>
                 <div class="col-md-9 description">
-                  <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                  <h3>by Becky Albertalli</h3>
-                  <p>Sixteen-year-old and not-so-openly gay Simon Spier prefers to save his drama for the school musical. But when an email falls into the wrong hands, his secret is at risk of being thrust into the spotlight. Now Simon is actually being blackmailed: if he doesn’t play wingman for class clown Martin, his sexual identity will become everyone’s business. </p>
+                  <h2><?= $nextSalon["title"]; ?></h2>
+                  <h3>by <?= $nextSalon["author"]; ?></h3>
+                  <p><?= $nextSalon["description"]; ?></p>
                 </div>
               </a>
             </div>
             <div class="col-md-5 col-md-offset-1 date-and-time">
               <h5>Date &amp; time</h5>
-              <h6>Le <span>20/12/2017</span><br> À <span>8:00PM</span></h6>
+              <h6>Le <span><?= date("M j, o", strtotime($nextSalon["date"])); ?></span><br> À <span><?= date("h:iA", strtotime($nextSalon["date"])); ?></span></h6>
             </div>
           </div>
         </div>
       </section>
+      <?php
+      if(!$logged){
+      ?>
       <section id="joinUs">
-        <form action="?p=login&action=validateForm&formID=0" method="POST">
-          <div class="row">
-            <div class="col-sm-12">
-                <h3>Join the party</h3>
+        <div class="row">
+          <div class="col-sm-12">
+              <h3>Join the party</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <p>Like many others blah blah blah</p>
+              <p>Donec placerat. Nullam nibh dolor, blandit sed, fermentum id, imperdiet sit amet, neque. Nam mollis ultrices justo. Sed tempor. Sed vitae tellus. Etiam sem arcu, eleifend sit amet, gravida eget, porta at, wisi. Nam non lacus vitae ipsum viverra pretium. Phasellus massa. Fusce magna sem, gravida in, feugiat ac, molestie eget, wisi.</p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-3">
+         <div class="col-md-8 col-md-offset-1">
+            <form id="joinUs" action="<?= $root; ?>?p=login&action=validateForm&formID=0" method="POST">
               <div class="form-group">
-                <p>Like many others blah blah blah</p>
-                <p>Donec placerat. Nullam nibh dolor, blandit sed, fermentum id, imperdiet sit amet, neque. Nam mollis ultrices justo. Sed tempor. Sed vitae tellus. Etiam sem arcu, eleifend sit amet, gravida eget, porta at, wisi. Nam non lacus vitae ipsum viverra pretium. Phasellus massa. Fusce magna sem, gravida in, feugiat ac, molestie eget, wisi.</p>
+                <label for="registerEmail">Email address</label>
+                <input type="email" class="form-control" id="registerEmail" name="registerEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
+              <div class="form-group">
+                <label for="registerUsername">Username</label>
+                <input type="text" class="form-control" name="registerUsername" id="registerUsername" placeholder="Nom d'utilisateur">
+              </div>
+              <div class="form-group">
+                <label for="registerPwd1">Password</label>
+                <input type="password" class="form-control" id="registerPwd1" name="registerPwd1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="registerPwd2">Confirm Password</label>
+                <input type="password" class="form-control" id="registerPwd2" name="registerPwd2" placeholder="Password">
+              </div>
+              <button type="submit" name="validateForm" class="btn btn-primary pull-right">Submit</button>
             </div>
-           <div class="col-md-8 col-md-offset-1">
-              <form id="joinUs" action="?p=login&action=validateForm&formID=1" method="POST">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Username</label>
-                  <input type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Confirm Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary pull-right">Submit</button>
-              </div>
-            </form>
-          </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </section>
+      <?php
+      }
+      ?>
    </div>
 
 

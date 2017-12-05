@@ -8,19 +8,34 @@
 
 <?php 
   startblock('pageContent'); 
-?>
-  
 
-   <div id="admin">
+
+?>
+  <div id="admin">
     <ul class="breadcrumbs">
       <li><b>Navigation: </b></li>
-      <li><a class="active">Dashboard</a></li>
+      <li><a href="<?= $root; ?>/admin">Dashboard</a></li>
       <li><a href="<?= $root; ?>/admin/books">Books</a></li>
-      <li><a href="<?= $root; ?>/admin/genres">Genres</a></li>
+      <li><a class="active">Genres</a></li>
       <li><a href="<?= $root; ?>/admin/users">Users</a></li>
       <li><a href="<?= $root; ?>/admin/salons">Salons</a></li>
     </ul>
-  </div>
+  <?php
+
+    if(
+      isset($_GET["action"]) && $_GET["action"] === "create"
+    ){
+      include 'create.php';
+    }else  if(
+      isset($_GET["action"]) && $_GET["action"] === "edit"
+    ){
+      include 'edit.php';
+    }else{
+      include 'list.php';
+    }
+
+  ?>
+</div>
 
 
 <?php endblock(); ?>
@@ -29,7 +44,13 @@
 <script src="<?= $root; ?>/view/assets/js/vendor/datatable/datatable.min.js"></script>
 <script>
 $(function(){
-    $('#example').DataTable();
-} );
+
+
+  $('#example').DataTable({
+    "order": [[ 0, 'desc' ]]
+  });
+
+
+});
 </script>
 <?php endblock(); ?>

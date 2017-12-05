@@ -10,6 +10,11 @@ $(function(){
   }
   responsive();
 
+  if($('.alert').length > 0){
+    setTimeout(function(){
+      $('.alert').fadeOut(700);
+    }, 2000);
+  }
 
   $('nav .responsive-menu').click(function(){
     if($('nav').hasClass('open')){
@@ -22,12 +27,12 @@ $(function(){
   $('#searchbar').click(function(e){
     e.preventDefault();
 
-    if($(this).hasClass('icon-search')){
-      $(this).attr({'class': 'icon-x'});
+    if($(this).hasClass('ion-android-search')){
+      $(this).attr({'class': 'ion-android-close'});
       $('#searchNav').addClass('activated');
 
     }else{
-      $(this).attr({'class': 'icon-search'});
+      $(this).attr({'class': 'ion-android-search'});
       $('#searchNav').removeClass('activated');
     }
 

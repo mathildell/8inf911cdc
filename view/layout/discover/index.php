@@ -8,117 +8,45 @@
 
 <?php 
   startblock('pageContent'); 
+    if(!isset($_GET["id"])){
+      include 'main.php';
+    }else{
+      include 'genre.php';
+    }
+  endblock(); ?>
+
+<?php 
+
+startblock('customScripts'); 
 ?>
-  
+<script>
+$(function(){
+/*
+  var emphasedBook = $('#googleidemphased').val();
 
-   <div id="discover">
-      <section id="emphasisWork">
-        <h1>À la Une</h1>
-        <div class="row">
-          <div class="col-md-8">
-            <div class="work" id="emphased">
-              <div class="row">
-                <div class="col-md-3">
-                  <a href="#">
-                    <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-                  </a>
-                </div>
-                <div class="col-md-9 description">
-                  <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                  <h3>by Becky Albertalli</h3>
-                  <p>Sixteen-year-old and not-so-openly gay Simon Spier prefers to save his drama for the school musical. But when an email falls into the wrong hands, his secret is at risk of being thrust into the spotlight. Now Simon is actually being blackmailed: if he doesn’t play wingman for class clown Martin, his sexual identity will become everyone’s business. Worse, the privacy of Blue, the pen name of the boy he’s been emailing, will be compromised.</p>
-                  <div class="row metaData">
-                    <div class="col-md-8">
-                      <ul class="tags">
-                        <li><a href="#">#category 1</a></li>
-                        <li><a href="#">#category 2</a></li>
-                        <li><a href="#">#category 3</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <a class="btn btn-primary pull-right readMore">
-                        voir plus
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <aside class="col-md-3 col-md-offset-1">
-            <div class="sideCat">
-              <h5>Other genres</h5>
-              <ul>
-                <li><a href="#">Genre #1</a></li>
-                <li><a href="#">Genre #2</a></li>
-                <li><a href="#">Genre #3</a></li>
-                <li><a href="#">Genre #4</a></li>
-              </ul>
-            </div>
-            <div class="sideCat">
-              <h5>Trier les résultats</h5>
-              <div class="form-group">
-                <select class="selectpicker">
-                  <option value="0">Nouveautées</option>
-                  <option value="1">Popularité</option>
-                  <option value="2">Auteurs: A-Z</option>
-                  <option value="3">Titres: A-Z</option>
-                </select>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="allWorks">
-        <div class="row">
-          <div class="work col-md-3">
-            <a class="row">
-              <div class="col-md-4">
-                <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-              </div>
-              <div class="col-md-8 description">
-                <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                <h3>by Becky Albertalli</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class="work col-md-offset-1 col-md-3">
-            <a class="row">
-              <div class="col-md-4">
-                <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-              </div>
-              <div class="col-md-8 description">
-                <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                <h3>by Becky Albertalli</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class="work col-md-offset-1 col-md-3">
-            <a class="row">
-              <div class="col-md-4">
-                <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-              </div>
-              <div class="col-md-8 description">
-                <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                <h3>by Becky Albertalli</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-        
-
-
-      </section>
-        
-   </div>
-
-
-<?php endblock(); ?>
-
-<?php startblock('customScripts'); ?>
-
-
-<?php endblock(); ?>
+  $.ajax({
+    url: 'https://www.googleapis.com/books/v1/volumes/'+emphasedBook+'',
+    success: function(data){
+      $('#emphasedTitle').text(data.volumeInfo.title);
+      $('#emphasedImg').attr({'src' : data.volumeInfo.imageLinks.thumbnail });
+      $('#emphasedAuthor').text(data.volumeInfo.authors[0]);
+      $('#emphasedDesc').html(data.volumeInfo.description);
+    }
+  });
+  //?key=AIzaSyA7xLy_fqc3hG57fYLqd6G7rVKQaU0lF4I
+  $('#allWorks .work').each(function(){
+    var bookid = $(this).attr('id');
+    $.ajax({
+      url: 'https://www.googleapis.com/books/v1/volumes/'+bookid+'',
+      success: function(data){
+        $('#'+bookid+' .title').text(data.volumeInfo.title);
+        $('#'+bookid+' .bookImg').attr({'src' : data.volumeInfo.imageLinks.thumbnail });
+        $('#'+bookid+' .author').text(data.volumeInfo.authors[0]);
+      }
+    });
+  });
+*/
+});
+</script>
+<?php
+endblock(); ?>

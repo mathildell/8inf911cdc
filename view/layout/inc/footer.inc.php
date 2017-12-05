@@ -12,9 +12,9 @@
       <div class="col-md-4 smedia">
         <h6>Follow us</h6>
         <ul>
-           <li><!-- facebook --><a href="http://facebook.com/" target="_blank" class="icon-facebook-alt"></a></li>
-           <li><!-- twitter --><a href="http://twitter.com/" target="_blank" class="icon-twitter"></a></li>
-           <li><!-- google + --><a href="http://google.com/" target="_blank" class="icon-google-plus"></a></li>
+           <li><!-- facebook --><a href="http://facebook.com/" target="_blank" class="ion-social-facebook-outline"></a></li>
+           <li><!-- twitter --><a href="http://twitter.com/" target="_blank" class="ion-social-twitter-outline"></a></li>
+           <li><!-- google + --><a href="http://google.com/" target="_blank" class="ion-social-googleplus-outline"></a></li>
         </ul>
       </div>
       <div class="col-md-4">

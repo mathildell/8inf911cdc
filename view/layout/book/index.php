@@ -8,162 +8,304 @@
 
 <?php 
   startblock('pageContent'); 
-?>
+
+  $book = $Books->get(intval($_GET["id"]))[0];
+  $emphasedTags = $Books->getGenresBunks($book["genres_id"]);
+  $recBooks = $Books->getRecommended($book["id"], $emphasedTags);
+
+?> 
   
-   <div id="book">
-      <section id="emphasisWork">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="work" id="emphased">
-              <div class="row">
-                <div class="col-md-3">
-                  <a href="#">
-                    <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
+ <div id="book">
+    <section id="emphasisWork">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="work" id="emphased">
+            <input type="hidden" name="googleidemphased" id="googleidemphased" value="<?= $book["google_id"]; ?>">
+            <div class="row">
+              <div class="col-md-3">
+                <a href="<?= $root; ?>/book/<?= $book["id"]; ?>">
+                  <img id="emphasedImg" src="<?= $book["image"]; ?>" alt="logo" />
+                </a>
+              </div>
+              <div class="col-md-9 description">
+                <h2><?= $book["title"]; ?></h2>
+                <h3>by <?= $book["author"]; ?>&nbsp;&nbsp;|&nbsp;&nbsp; <?= explode('-', $book["publishedDate"])[0]; ?></h3>
+                <div id="emphasedDescription"><?= $book["description"]; ?></div>
+                <div class="row metaData">
+                  <div class="col-md-8">
+                    <ul class="tags">
+                      <?php 
+                      foreach ($emphasedTags as $key => $tag) {
+                      ?>
+                        <li><a href="<?= $root; ?>/discover/<?= $tag["id"]; ?>">#<?= $tag["name"]; ?></a></li>
+                      <?php
+                      }
+                      ?>  
+                    </ul>
+                  </div>
+                </div>
+                <div class="morelinks">
+                  <a href="#" class="btn btn-primary" id="readExtracts" target="_blank">
+                    <i class="ion-ios-book"></i> Lire un extrait
                   </a>
-                </div>
-                <div class="col-md-9 description">
-                  <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                  <h3>by Becky Albertalli &nbsp;&nbsp;|&nbsp;&nbsp; 2013</h3>
-                  <p>Sixteen-year-old and not-so-openly gay Simon Spier prefers to save his drama for the school musical. But when an email falls into the wrong hands, his secret is at risk of being thrust into the spotlight. Now Simon is actually being blackmailed: if he doesn’t play wingman for class clown Martin, his sexual identity will become everyone’s business. Worse, the privacy of Blue, the pen name of the boy he’s been emailing, will be compromised.</p>
-                  <p>With some messy dynamics emerging in his once tight-knit group of friends, and his email correspondence with Blue growing more flirtatious every day, Simon’s junior year has suddenly gotten all kinds of complicated. Now, change-averse Simon has to find a way to step out of his comfort zone before he’s pushed out—without alienating his friends, compromising himself, or fumbling a shot at happiness with the most confusing, adorable guy he’s never met.</p>
-                  <div class="row metaData">
-                    <div class="col-md-8">
-                      <ul class="tags">
-                        <li><a href="#">#category 1</a></li>
-                        <li><a href="#">#category 2</a></li>
-                        <li><a href="#">#category 3</a></li>
-                      </ul>
-                    </div>
-                  </div>
+                  <a href="#" target="_blank" class="btn btn-primary" id="buyOnGooglePlay">
+                    <i class="ion-ios-download"></i> Acheter sur Google Play 
+                    <span></span>
+                  </a> 
                 </div>
               </div>
             </div>
           </div>
-          <aside class="col-md-3 col-md-offset-1">
-            <div class="sideCat">
-              <h5>Similar books</h5>
-
-              <div class="work">
-                <a class="row">
-                  <div class="col-md-3">
-                    <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-                  </div>
-                  <div class="col-md-9 description">
-                    <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                    <h3>by Becky Albertalli</h3>
-                  </div>
-                </a>
-              </div>
-              <div class="work">
-                <a class="row">
-                  <div class="col-md-3">
-                    <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-                  </div>
-                  <div class="col-md-9 description">
-                    <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                    <h3>by Becky Albertalli</h3>
-                  </div>
-                </a>
-              </div>
-              <div class="work">
-                <a class="row">
-                  <div class="col-md-3">
-                    <img src="<?= $root; ?>/view/assets/img/works/simon.jpg" alt="logo" />
-                  </div>
-                  <div class="col-md-9 description">
-                    <h2>Simon vs. the Homo Sapiens Agenda</h2>
-                    <h3>by Becky Albertalli</h3>
-                  </div>
-                </a>
-              </div>
-
-            </div>
-          </aside>
         </div>
-      </section>
+        <aside class="col-md-3 col-md-offset-1">
+          <?php if(count($recBooks) > 0){?>
+          <div class="sideCat">
+            <h5>Similar books</h5>
+            <?php
+              foreach ($recBooks as $key => $rec) {
+                if($key < 3){
+            ?>
+              <div class="work">
+                <a class="row" href="<?= $root; ?>/book/<?= $rec["id"]; ?>">
+                  <div class="col-md-3">
+                    <img src="<?= $rec["image"]; ?>" alt="logo" />
+                  </div>
+                  <div class="col-md-9 description">
+                    <h2><?= $rec["title"]; ?></h2>
+                    <h3>by <?= $rec["author"]; ?></h3>
+                  </div>
+                </a>
+              </div>
+            <?php
 
-      <section class="banner inner">
-      <h4>Sujet du prochain salon</h4>
-      <div class="content">
-        <div class="row">
-          <div class="col-md-4">
-            <p>Aliquam et nisl vel ligula consectetuer suscipit. Morbi euismod enim eget neque. Donec sagittis massa.</p>
+                }
+              }
+            ?>
+
           </div>
-          <div class="col-md-4 date-and-time">
-              <h6>Le <span>20/12/2017</span><br> À <span>8:00PM</span></h6>
-          </div>
-          <div class="col-md-4">
-            <p>Vestibulum quis augue sit amet ipsum laoreet pretium. Nulla facilisi.</p><br>
-            <a href="<?= $root; ?>/login" class="btn-primary btn">Nous rejoindre</a>
+          <?php
+            }
+          ?>
+        </aside>
+      </div>
+    </section>
+    <section id="bookInfos">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-5">
+              <p>
+                <b>Date de publication:</b> <span id="publishDate"></span>
+              </p>
+              <p>
+                <b>Maison d'édition:</b> <span id="publisher"></span>
+              </p>
+              <p>
+                <b>Langue:</b> <span id="language"></span>
+              </p>
+              <p>
+                <b>Maturity rating:</b> <span id="maturityRating"></span>
+              </p>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+              <p>
+                <b>Code ISBN:</b> <span id="isbn"></span>
+              </p>
+              <p>
+                <b>Note moyenne des reviews (Google Play):</b> <span id="averageRating"></span>
+              </p>
+              <p>
+                <b>(Ebook) Nombre de pages:</b> <span id="pageCountEbook"></span>
+              </p>
+              <p>
+                <b>(Hard cover) Nombre de pages:</b> <span id="pageCountHardCover"></span>
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
-     </section>
+    </section>
+    <?php
+        $nextSalon = $Salons->findNextSalon()[0];
+        if($nextSalon["books_id"] === $book["id"]){
 
-      <section id="comments">
-        <h4>Comments</h4>
-        <h5>38 reviews</h5>
+    ?>
+    <section class="banner inner">
+    <h4>Sujet du prochain salon</h4>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-4">
+          <p>Aliquam et nisl vel ligula consectetuer suscipit. Morbi euismod enim eget neque. Donec sagittis massa.</p>
+        </div>
+        <div class="col-md-4 date-and-time">
+            <h6>Le <span><?= date("d/m/Y", strtotime($nextSalon["date"])); ?></span><br> À <span><?= date("h:iA", strtotime($nextSalon["date"])); ?></span></h6>
+        </div>
+        <div class="col-md-4">
+          <p>Vestibulum quis augue sit amet ipsum laoreet pretium. Nulla facilisi.</p><br>
+          <?php if($logged) { ?>
+          <a href="<?= $root; ?>/salons/<?= $nextSalon["id"]; ?>" class="btn-primary btn">S'inscrire</a>
+          <?php } else { ?>
+          <a href="<?= $root; ?>/login" class="btn-primary btn">Nous rejoindre</a>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+   </section>
+   <?php
+      }else{
+        echo '<br><br><br>';
+      }
 
-        <div class="row">
-          <aside class="col-md-3 col-md-offset-1 pull-right">
-            <div class="sideCat">
-              <h5>Trier les revues</h5>
-              <div class="form-group">
-                <select class="selectpicker">
-                  <option value="0">Récents</option>
-                  <option value="1">Auteurs: A-Z</option>
-                  <option value="2">Titres: A-Z</option>
-                </select>
-              </div>
-            </div>
-            <div class="sideCat">
-              <h5>Chercher parmis les revues</h5>
-              <div class="form-group">
-                <input type="text" class="form-control" name="#" placeholder="#">
-              </div>
-            </div>
-          </aside>
-          <div class="col-md-8">
-            <div class="userReview">
-              <h6>Title of the review</h6>
-              <div class="user">
-                <a href="<?= $root; ?>/profile">
-                  <img src="https://randomuser.me/api/portraits/women/49.jpg">
-                  TerriChapman08
-                </a>
-                <datetime>
-                  Published on 20/10/2017
-                </datetime>
-              </div>
-              <p>Donec placerat. Nullam nibh dolor, blandit sed, fermentum id, imperdiet sit amet, neque. Nam mollis ultrices justo. Sed tempor. Sed vitae tellus. Etiam sem arcu, eleifend sit amet, gravida eget, porta at, wisi. Nam non lacus vitae ipsum viverra pretium. Phasellus massa. Fusce magna sem, gravida in, feugiat ac, molestie eget, wisi. Fusce consectetuer luctus ipsum. Vestibulum nunc.</p>
-              <p>Suspendisse dignissim adipiscing libero. Integer leo. Sed pharetra ligula a dui. Quisque ipsum nibh, ullamcorper eget, pulvinar sed, posuere vitae, nulla. Sed varius nibh ut lacus. Curabitur fringilla. Nunc est ipsum, pretium quis, dapibus sed, varius non, lectus. Proin a quam. Praesent lacinia, eros quis aliquam porttitor, urna lacus volutpat urna, ut fermentum neque mi egestas dolor.</p>
-            </div>
-        
-            <div class="userReview">
-              <h6>Title of the review</h6>
-              <div class="user">
-                <a href="<?= $root; ?>/profile">
-                  <img src="https://randomuser.me/api/portraits/women/49.jpg">
-                  TerriChapman08
-                </a>
-                <datetime>
-                  Published on 20/10/2017
-                </datetime>
-              </div>
-              <p>Donec placerat. Nullam nibh dolor, blandit sed, fermentum id, imperdiet sit amet, neque. Nam mollis ultrices justo. Sed tempor. Sed vitae tellus. Etiam sem arcu, eleifend sit amet, gravida eget, porta at, wisi. Nam non lacus vitae ipsum viverra pretium. Phasellus massa. Fusce magna sem, gravida in, feugiat ac, molestie eget, wisi. Fusce consectetuer luctus ipsum. Vestibulum nunc.</p>
+      //if(!empty($book["comments_id"])){
+        /* get comments */
+        $comments = $Books->getComments($book["id"]);
+   ?>
+    <section id="comments">
+      <h4>Comments</h4>
+      <h5><?= count($comments); ?> review<?= (count($comments) > 1 || count($comments) == 0) ? 's' : ''; ?></h5>
+
+      <div class="row">
+        <aside class="col-md-3 col-md-offset-1 pull-right">
+          <?php if(count($comments) > 0){ ?>
+          <div class="sideCat">
+            <h5>Trier les revues</h5>
+            <div class="form-group">
+              <select class="selectpicker">
+                <option value="0">Récents</option>
+                <option value="1">Auteurs: A-Z</option>
+                <option value="2">Titres: A-Z</option>
+              </select>
             </div>
           </div>
+          <div class="sideCat">
+            <h5>Chercher parmis les revues</h5>
+            <div class="form-group">
+              <input type="text" class="form-control" name="#" placeholder="#">
+            </div>
+          </div>
+          <?php } ?>
+        </aside>
+        <div class="col-md-8">
 
+          <?php 
+            if(count($comments) > 0){ 
+              foreach ($comments as $key => $com) {
+                $getUser = $Users->get($com["users_id"])[0];
+          ?>
+
+          <div class="userReview">
+            <h6><?= $com["title"]; ?></h6>
+            <div class="user">
+              <a href="<?= $root; ?>/profile/<?= $getUser["id"]; ?>">
+                <img src="<?= $getUser["image"]; ?>">
+                <?= $getUser["username"]; ?>
+              </a>
+              <datetime>
+                Published on <?= date("d/m/Y", strtotime($com["timestamp"])); ?>
+              </datetime>
+            </div>
+            <?= $com["content"]; ?>
+          </div>
+          <?php 
+              }
+            } ?>
+
+          <form class="form" action="<?= $root; ?>?p=book&id=<?= $book["id"]; ?>&action=validateForm&formID=3" method="POST">
+            <?php if(count($comments) > 0){ ?><br><br><hr><br><br><?php } ?>
+            <input type="hidden" name="bookId" value="<?= $book['id']; ?>">
+            <input type="hidden" name="userId" value="<?= $me['id']; ?>">
+            
+            <?php if(count($comments) === 0){ ?><h2>Soyez le premier à poster un commentaire!</h2><br><?php }else{ ?> <h2>Envoyer un commentaire</h2><br> <?php } ?>
+
+            <div class="form-group">
+              <label for="reviewTitle">Titre de la revue</label>
+              <input type="text" class="form-control" id="reviewTitle" name="reviewTitle" required>
+            </div>
+
+            <div class="form-group">
+              <label for="reviewContent">Contenu</label>
+              <textarea rows="5" class="form-control" id="reviewContent" name="reviewContent" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary pull-right" type="submit" name="validateForm">Poster</button>
+            </div>
+          </form>
         </div>
 
-      </section>
-        
-   </div>
+      </div>
+
+    </section>
+    <?php
+    ?>
+      
+ </div>
 
 
 <?php endblock(); ?>
 
 <?php startblock('customScripts'); ?>
+<script>
+$(function(){
+  $.getJSON('https://www.googleapis.com/books/v1/volumes/<?= $book["google_id"]; ?>', function(data){
+    console.log(data);
+    
+    if(typeof data.saleInfo.listPrice !== "undefined"){
+      $('#buyOnGooglePlay span').text("("+data.saleInfo.listPrice.amount+data.saleInfo.listPrice.currencyCode+")");
+    }else{
+      $('#buyOnGooglePlay span').remove();
+    }
+    if(data.saleInfo.saleability !== "NOT_FOR_SALE"){
+      $('#buyOnGooglePlay').attr({'href': data.saleInfo.buyLink });
+    }else{
+      $('#buyOnGooglePlay').remove();
+    }
 
+    $('#readExtracts').attr({'href': 'https://books.google.ca/books?id=<?= $book["google_id"]; ?>&printsec=frontcover&source=gbs_atb#v=onepage&q&f=false' });
 
+    if(typeof data.volumeInfo.publishedDate !== "undefined"){
+      $('#publishDate').text(data.volumeInfo.publishedDate);
+    }else{
+      $('#publishDate').remove();
+    }
+    if(typeof data.volumeInfo.language !== "undefined"){
+      $('#language').text(data.volumeInfo.language);
+    }else{
+      $('#language').remove();
+    }
+    if(typeof data.volumeInfo.publisher !== "undefined"){
+      $('#publisher').text(data.volumeInfo.publisher);
+    }else{
+      $('#publisher').remove();
+    }
+    if(typeof data.volumeInfo.maturityRating !== "undefined"){
+      $('#maturityRating').text(data.volumeInfo.maturityRating);
+    }else{
+      $('#maturityRating').remove();
+    }
+    if(typeof data.volumeInfo.industryIdentifiers[1].identifier !== "undefined"){
+      $('#isbn').text("ISBN " + data.volumeInfo.industryIdentifiers[1].identifier);
+    }else{
+      $('#isbn').remove();
+    }
+    if(typeof data.volumeInfo.averageRating !== "undefined"){
+      $('#averageRating').text(data.volumeInfo.averageRating);
+    }else{
+      $('#averageRating').remove();
+    }
+    if(typeof data.volumeInfo.pageCount !== "undefined"){
+      $('#pageCountEbook').text(data.volumeInfo.pageCount);
+    }else{
+      $('#pageCountEbook').remove();
+    }
+    if(typeof data.volumeInfo.printedPageCount !== "undefined"){
+      $('#pageCountHardCover').text(data.volumeInfo.printedPageCount);
+    }else{
+      $('#pageCountHardCover').remove();
+    }
+  });
+  //?key=AIzaSyA7xLy_fqc3hG57fYLqd6G7rVKQaU0lF4I
+});
+</script>
 <?php endblock(); ?>
