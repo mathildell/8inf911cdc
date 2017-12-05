@@ -125,7 +125,7 @@
               </div>
               <?php
               if($booksEmphased === NULL){
-                if($key % 3 === 1 || $key == count($allbooks)-1){
+                if($key % 2 === 1 || $key == count($allbooks)-1){
                   echo '</div>';
                 }
               }else{

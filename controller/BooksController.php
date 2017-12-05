@@ -71,7 +71,12 @@ class BooksController extends ApplicationController{
         }
       }
     }
-    $allGenres = implode(",", array_merge($genresIds, $allGenres));
+    if(!empty($genresIds[0])){
+      $allGenres = array_merge($genresIds, $allGenres);
+    }
+    if(is_array($allGenres)){
+      $allGenres = implode(",", $allGenres);
+    }
     
     $newBook = [
       ":google_id" => $googleid,
@@ -124,8 +129,19 @@ class BooksController extends ApplicationController{
 
   public function findEmphasedOfGenre($id){
     //SELECT * FROM books WHERE ALaUne = '1' AND genres_id LIKE '%9%'
-    $query = "SELECT * FROM books WHERE ALaUne = '1' AND genres_id LIKE '%".$id."%'";
-    return $this->db->custom($query);
+    $query = "SELECT * FROM books WHERE ALaUne = '1' 
+    AND genres_id LIKE '%".$id."%'";
+    
+    $return = $this->db->custom($query);
+
+    $books = [];
+    foreach ($return as $key => $value) {
+      if(in_array($id, explode(',', $value["genres_id"]))){
+        array_push($books,$value);
+      } 
+    }
+
+    return $books;
   }
   
   public function getNews(){
@@ -135,8 +151,20 @@ class BooksController extends ApplicationController{
 
   public function getByGenre($id){
 
-    $query = "SELECT * FROM books WHERE ALaUne = '0' AND genres_id LIKE '%".$id."%'";
-    return $this->db->custom($query);
+    $query = "SELECT * FROM books 
+              WHERE ALaUne = '0' 
+              AND genres_id LIKE '%".$id."%'";
+    
+    $return = $this->db->custom($query);
+
+    $books = [];
+    foreach ($return as $key => $value) {
+      if(in_array($id, explode(',', $value["genres_id"]))){
+        array_push($books,$value);
+      } 
+    }
+
+    return $books;
 
   }
 
